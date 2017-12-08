@@ -18,5 +18,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage" : "http://tjsudarsan.github.io/equiz"
+  "homepage": "http://viswaram1997.github.io/quiz"
 }
