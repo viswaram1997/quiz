@@ -1,0 +1,55 @@
+#header h1{
+    text-align: center;
+    color: #C52233;
+}
+
+#header p{
+    text-align: center;
+    margin: 0px;
+    margin-top: -15px;
+    margin-bottom: 15px;
+    font-style: italic;
+    padding-left:100px;
+    color: #FBF5F3;
+}
+
+#header{
+    background-color: #000022;
+    padding-top:10px;
+    padding-bottom: 10px;
+}
+
+#takeq {
+    text-align: center;
+}
+
+#listquestions {
+    text-align: center;
+    padding:40px;
+}
+
+#listquestions h3{
+    font-size: 30px;
+}
+
+@media(max-width: 480px){
+    #listquestions h3{
+        font-size: 15px;
+    }
+}
+
+#timer {
+    text-align: right;
+    color: red;
+    font-size: 20px;
+    padding-right: 20px;
+    padding-left:10px;
+}
+
+#photo img{
+    max-height: 50px;
+}
+
+#modal{
+    text-align: center;
+}

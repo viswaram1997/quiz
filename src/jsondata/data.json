@@ -1,0 +1,113 @@
+[
+    {
+        "question" : "Direction: In the given series find the number which is wrong. 46, 49, 58, ?,110",
+        "answer" : "2",
+        "options" : [
+            {
+                "key":"1",
+                "choice": "7813523"
+            },
+            {
+                "key":"2",
+                "choice": "676235235"
+            },
+            {
+                "key":"3",
+                "choice": "543636"
+            },
+            {
+                "key":"4",
+                "choice": "4234235"
+            }
+        ]
+    },
+    {
+        "question" : "There are 84 students in block A of a residential school. Due to the admission of 26 new students, the expenses of the mess increase by Rs. 62 per day while the average expenditure per head diminished by Rs. 3. What was the original expenditure of the mess?",
+        "answer" : "8",
+        "options" : [
+            {
+                "key":"6",
+                "choice": "150464560"
+            },
+            {
+                "key":"7",
+                "choice": "135234266"
+            },
+            {
+                "key":"8",
+                "choice": "455654736"
+            },
+            {
+                "key":"9",
+                "choice": "3222353"
+            }
+        ]
+    },
+    {
+        "question" : "What will be the remainder when 323334is divided by 9? What will be the remainder when 323334is divided by 9? ",       
+       
+        "answer" : "11",
+        "options" : [
+            {
+                "key":"10",
+                "choice": "56586"
+            },
+            {
+                "key":"11",
+                "choice": "132535"
+            },
+            {
+                "key":"12",
+                "choice": "45637"
+            },
+            {
+                "key":"13",
+                "choice": "536468"
+            }
+        ]
+    },
+    {
+        "question" : "Direction: In the given series find the number which is wrong. 1800, 1080, 648,?, 232.8",
+        "answer" : "17",
+        "options" : [
+            {
+                "key":"14",
+                "choice": "7437458"
+            },
+            {
+                "key":"15",
+                "choice": "67624145"
+            },
+            {
+                "key":"16",
+                "choice": "53266"
+            },
+            {
+                "key":"17",
+                "choice": "643645"
+            }
+        ]
+    },
+    {
+        "question" : "If a boy walks from his house at 5 kmph, he reaches school 5 min early, and if he walks at 4 kmph he reaches 5 min late. How far does he walk for his school?",
+        "answer" : "18",
+        "options" : [
+            {
+                "key":"18",
+                "choice": "63346"
+            },
+            {
+                "key":"19",
+                "choice": "22122"
+            },
+            {
+                "key":"20",
+                "choice": "77766"
+            },
+            {
+                "key":"21",
+                "choice": "425365"
+            }
+        ]
+    }
+]
