@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { Col, Row, ToggleButtonGroup, ToggleButton, ButtonGroup, Button, Panel, ListGroup, ListGroupItem, Modal, ButtonToolbar, ProgressBar } from "react-bootstrap"
 import dataFetch from '../services/services';
 import brainicon from './assets/brain.svg';
+import timmer from "./assets/if_ic_timer_48px_352173.svg";
 
 export default class Quiz extends Component {
     constructor() {
@@ -29,7 +30,7 @@ export default class Quiz extends Component {
             allclick: false,
             confirmmodal:false,
             prev:false,
-            nxt: true,
+            
             skip: []
         }
         this.Nextquestion = this.Nextquestion.bind(this);
@@ -83,7 +84,8 @@ export default class Quiz extends Component {
         let user = this.state.userValue;
         let top = this.state.topbutton;
         top.push(index);
-        user.push(e);
+        
+        user[this.state.index]=e;
         var removeSkipValue= this.state.skip;
         var inde = removeSkipValue.indexOf(index);
         if(inde!==-1){
@@ -96,8 +98,8 @@ export default class Quiz extends Component {
             isChoosed: false,
             topbutton: top,
             skip: removeSkipValue,
-            skipdisable: true,
-            nxt: false
+            skipdisable: true
+           
         });
         var tops = this.state.topbutton.length;
         var data = this.state.data.lenght;
@@ -122,14 +124,14 @@ export default class Quiz extends Component {
 
     prevQuestion() {
         if(this.state.index !== 0){
-            this.setState({nxt: false})
+         
             if(!this.state.prev){
                 
         }else{
             this.setState({
                 index: this.state.index - 1,
-                allfinish: false,
-                nxt: false
+                allfinish: false
+               
             })
         }
         }
@@ -142,8 +144,8 @@ export default class Quiz extends Component {
             this.setState({
                 index: index + 1,
                 disabled: false,
-                prev: true,
-                nxt: true
+                prev: true
+                
             });
             if (index === length - 2) {
                 this.setState({
@@ -154,29 +156,45 @@ export default class Quiz extends Component {
     }
 
     skip(e){
-      
+       
         let Skip=this.state.skip;
         var val = Skip.indexOf(e);
+
         if(val === -1){
+            // console.log(val);
             Skip.push(e);
             this.setState({
-                skip:Skip
+                skip:Skip,
+                prev:true
+                
             });
         }
+        
         const index = this.state.index;
         const length = this.state.data.length;
-        if (index < length) {
+        if (index < length-1) {
             this.setState({
                 index: index + 1,
-                disabled: false
+                disabled: false,
+                prev:true
+            });
+        }else{
+            this.setState({
+                allfinish:true
             });
         }
     }
 
 
     testfinish() {
+        if(this.state.userValue.length===this.state.data.length){
+            this.setState({
+                showModal:true
+            });
+        }
         this.setState({
-            resultDisplay: true,
+            resultDisplay: true
+      
         });
         if (!this.state.allclick) {
             if(this.state.userValue.length === this.state.data.length){
@@ -209,7 +227,7 @@ export default class Quiz extends Component {
             }
         }
         var da = this.state.topbutton.find(findclick);
-        console.log(da)
+        // console.log(da)
         var dd = parseInt(da);
         if (dd >= 0) {
             return "true"
@@ -232,8 +250,10 @@ export default class Quiz extends Component {
     }
 
     validate(e) {
+  console.log( this.state.userValue,"njkn",e);
         if (e === this.state.userValue[this.state.index]) {
             if (e === this.state.data[this.state.index].answer) {
+                console.log("fdfddfddfdd");
                 return "success"
             } else {
                 return "danger"
@@ -276,7 +296,7 @@ export default class Quiz extends Component {
 
         var button = this.state.skip.map((data, i) => {
             return (
-                <Button value={data+1} >
+                <Button value={data+1} bsStyle="warning" >
                     {data + 1}
                 </Button>
             )
@@ -320,11 +340,11 @@ export default class Quiz extends Component {
         var test = () => (
             <Row>
                 <Col md={12}>
-                    <h2 id="takeq">Take Quiz</h2>
-                    <p id="timer">Countdown: {!this.state.startQuiz ? <p></p> : this.state.timer}</p>
+                    
+                    <p id="timer"><img  Style="max-height:25px " src={timmer}/> {!this.state.startQuiz ? <p></p> : this.state.timer}</p>
                     <p><ProgressBar active bsStyle="success" now={(this.state.userValue.length/this.state.data.length)*100} /></p>
                     <p>
-                        <p>Questions: 
+                        <p Style="font-size:18px">Skipped Question 
                         <ButtonToolbar>
                             <ButtonGroup onClick={this.TopButtonClick}>
                                {button}
@@ -343,18 +363,21 @@ export default class Quiz extends Component {
                             
                                
                                     <div>
-                                        <Button
+                                        <Button Style={"margib :5px"}
                                             onClick={this.prevQuestion}
-                                            disabled={!this.state.prev}
+                                            disabled={this.state.index === 0 ? true : false}  
                                         >&lt;&lt; Previous Question</Button>
-                                        <Button
+                                        <Button Style={"margin :5px "}
                                             disabled={this.disabled(this.state.index)}
                                             onClick={()=>{
-                                                this.skip(this.state.index)
+                                                if(this.state.skip.length < this.state.data.length-1){
+                                                    // console.log(this.state.skip.length)
+                                                    this.skip(this.state.index)
+                                                }
                                             }}
                                         >Skip Question</Button>
-                                        <Button
-                                            disabled={this.state.allfinish || this.state.nxt}                                            
+                                        <Button Style={"margin :5px "}
+                                            disabled={this.state.index === this.state.data.length-1 ? true : false}                                           
                                             onClick={this.Nextquestion}
                                         >Next Question &gt;&gt;</Button>
                                     </div>
@@ -432,7 +455,11 @@ export default class Quiz extends Component {
         return (
             <div>
                 {!this.state.startQuiz ?
+
                     <p Style="text-align: center; margin-top: 100px;">
+                    <h3>Quiz containing <b>{this.state.data.length}</b> questions</h3>
+                        <h3>Each question carries 1 mark</h3>
+                        <h3>Negative marks {this.state.negativemarks} per question</h3>
                         <Button
                             bsSize="large"
                             bsStyle="primary"
@@ -459,7 +486,7 @@ export default class Quiz extends Component {
                                 }, 1000)
                             }}
                             disabled={this.state.loading}
-                        >Start Quiz</Button></p> :
+                        >{this.state.loading?'loading':'startQuiz'}</Button></p> :
                     !this.state.resultDisplay ? test() : displayResult()
                 }
                 {modal()}
